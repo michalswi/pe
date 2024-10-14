@@ -32,14 +32,14 @@ variable "source_subnet_id" {
 }
 
 variable "priv_conn_config" {
-  description = "todo"
-  type = map(object({
+  description = "Private connection and DNS zone configuration details."
+  type = object({
     name_prefix                      = string
     private_connection_resource_id   = string
     private_connection_resource_name = string
     subresource_names                = list(string)
     private_dns_zone_name            = string
-  }))
+  })
   default = {
     name_prefix                      = "",
     private_connection_resource_id   = "",
@@ -52,5 +52,5 @@ variable "priv_conn_config" {
 variable "ttl" {
   description = "DNS Record TTL."
   type        = number
-  default     = 300
+  default     = 10
 }

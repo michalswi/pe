@@ -44,7 +44,7 @@ resource "azurerm_private_dns_a_record" "this" {
   zone_name           = azurerm_private_dns_zone.this.name
   resource_group_name = local.rg_name
   ttl                 = local.ttl
-  records = [
-    azurerm_private_endpoint.this.private_dns_zone_configs[0].ip_address,
-  ]
+  records = tolist(
+    azurerm_private_endpoint.this.custom_dns_configs[0].ip_addresses
+  )
 }
